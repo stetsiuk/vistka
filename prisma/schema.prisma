@@ -11,11 +11,11 @@ datasource db {
 
 model User {
   id           String  @id
+  displayName  String
   username     String  @unique
   email        String? @unique
   googleId     String? @unique
   passwordHash String?
-  displayName  String
   avatarUrl    String?
   bio          String?
 
@@ -31,7 +31,7 @@ model Session {
   id String @id
 
   userId String
-  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   expiresAt DateTime
 
@@ -43,7 +43,7 @@ model Post {
   content String
 
   userId String
-  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 
