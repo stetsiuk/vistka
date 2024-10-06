@@ -23,6 +23,7 @@ export function PostEditor() {
         placeholder: "What's up?",
       }),
     ],
+    immediatelyRender: false,
   });
 
   const input =
