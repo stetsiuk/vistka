@@ -3,11 +3,11 @@ import { unstable_cache } from "next/cache";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 
+import { getUserDataSelect } from "@/lib/types";
 import { validateRequest } from "@/auth";
-import { userDataSelect } from "@/lib/types";
+import { FollowButton } from "@/components/FollowButton";
 import { formatNumber } from "@/lib/utils";
 import { UserAvatar } from "@/components/UserAvatar";
-import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 
 export function TrendsSidebar() {
@@ -31,8 +31,13 @@ async function WhoToFollow() {
       NOT: {
         id: user.id,
       },
+      followers: {
+        none: {
+          followerId: user.id,
+        },
+      },
     },
-    select: userDataSelect,
+    select: getUserDataSelect(user.id),
     take: 5,
   });
 
@@ -55,7 +60,15 @@ async function WhoToFollow() {
               </p>
             </div>
           </Link>
-          <Button>Follow</Button>
+          <FollowButton
+            userId={user.id}
+            initialState={{
+              followers: user._count.followers,
+              isFollowedByUser: user.followers.some(
+                ({ followerId }) => followerId === user.id,
+              ),
+            }}
+          />
         </div>
       ))}
     </div>
@@ -78,7 +91,7 @@ const getTrendingTopics = unstable_cache(
     }));
   },
   ["trending_topics"],
-  { revalidate: 3 * 60 * 60 },
+  { revalidate: 60 },
 );
 
 async function TrendingTopics() {
