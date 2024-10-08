@@ -9,6 +9,7 @@ import { FollowerCount } from "@/components/FollowerCount";
 import { UserAvatar } from "@/components/UserAvatar";
 import { formatNumber } from "@/lib/utils";
 import { FollowButton } from "@/components/FollowButton";
+import { Linkify } from "@/components/Linkify";
 import { Button } from "@/components/ui/button";
 import { UserPosts } from "@/app/(main)/users/[username]/UserPosts";
 import prisma from "@/lib/prisma";
@@ -120,9 +121,11 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
       {user.bio && (
         <>
           <hr />
-          <div className="overflow-hidden whitespace-pre-line break-words">
-            {user.bio}
-          </div>
+          <Linkify>
+            <div className="overflow-hidden whitespace-pre-line break-words">
+              {user.bio}
+            </div>
+          </Linkify>
         </>
       )}
     </div>

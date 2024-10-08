@@ -7,6 +7,7 @@ import { getUserDataSelect } from "@/lib/types";
 import { validateRequest } from "@/auth";
 import { FollowButton } from "@/components/FollowButton";
 import { formatNumber } from "@/lib/utils";
+import { UserTooltip } from "@/components/UserTooltip";
 import { UserAvatar } from "@/components/UserAvatar";
 import prisma from "@/lib/prisma";
 
@@ -46,20 +47,22 @@ async function WhoToFollow() {
       <div className="text-xl font-bold">Who to follow</div>
       {usersToFollow.map((user) => (
         <div key={user.id} className="flex items-center justify-between gap-3">
-          <Link
-            href={`/users/${user.username}`}
-            className="flex items-center gap-3"
-          >
-            <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
-            <div>
-              <p className="line-clamp-1 break-all font-semibold hover:underline">
-                {user.displayName}
-              </p>
-              <p className="line-clamp-1 break-all text-muted-foreground">
-                @{user.username}
-              </p>
-            </div>
-          </Link>
+          <UserTooltip user={user}>
+            <Link
+              href={`/users/${user.username}`}
+              className="flex items-center gap-3"
+            >
+              <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
+              <div>
+                <p className="line-clamp-1 break-all font-semibold hover:underline">
+                  {user.displayName}
+                </p>
+                <p className="line-clamp-1 break-all text-muted-foreground">
+                  @{user.username}
+                </p>
+              </div>
+            </Link>
+          </UserTooltip>
           <FollowButton
             userId={user.id}
             initialState={{
@@ -81,7 +84,7 @@ const getTrendingTopics = unstable_cache(
         SELECT LOWER(unnest(regexp_matches(content, '#[[:alnum:]_]+', 'g'))) AS hashtag, COUNT(*) AS count
         FROM posts
         GROUP BY (hashtag)
-        ORDER BY count DESC, hashtag ASC 
+        ORDER BY count DESC, hashtag ASC
         LIMIT 5
 		`;
 
