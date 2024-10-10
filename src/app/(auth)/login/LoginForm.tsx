@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginValues } from "@/lib/validation";
 import { login } from "@/app/(auth)/login/actions";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/PasswordInput";
+import { LoadingButton } from "@/components/LoadingButton";
 import {
   Form,
   FormControl,
@@ -14,8 +16,6 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { PasswordInput } from "@/components/PasswordInput";
-import LoadingButton from "@/components/LoadingButton";
 
 export function LoginForm() {
   const [error, setError] = useState<string>();

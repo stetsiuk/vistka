@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { formatDate } from "date-fns";
 
 import { FollowerInfo, getUserDataSelect, UserData } from "@/lib/types";
+import { EditProfileButton } from "@/app/(main)/users/[username]/EditProfileButton";
 import { validateRequest } from "@/auth";
 import { TrendsSidebar } from "@/components/TrendsSidebar";
 import { FollowerCount } from "@/components/FollowerCount";
@@ -10,7 +11,6 @@ import { UserAvatar } from "@/components/UserAvatar";
 import { formatNumber } from "@/lib/utils";
 import { FollowButton } from "@/components/FollowButton";
 import { Linkify } from "@/components/Linkify";
-import { Button } from "@/components/ui/button";
 import { UserPosts } from "@/app/(main)/users/[username]/UserPosts";
 import prisma from "@/lib/prisma";
 
@@ -113,7 +113,7 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
           </div>
         </div>
         {user.id === loggedInUserId ? (
-          <Button>Edit profile</Button>
+          <EditProfileButton user={user} />
         ) : (
           <FollowButton userId={user.id} initialState={followerInfo} />
         )}

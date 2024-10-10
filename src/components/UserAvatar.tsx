@@ -16,6 +16,7 @@ export function UserAvatar({ avatarUrl, size, className }: UserAvatarProps) {
       alt="User avatar"
       width={size ?? 48}
       height={size ?? 48}
+      priority={true}
       className={cn(
         "aspect-square h-fit flex-none rounded-full bg-secondary object-cover",
         className,

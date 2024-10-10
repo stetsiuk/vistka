@@ -5,11 +5,11 @@ import { StarterKit } from "@tiptap/starter-kit";
 import { Placeholder } from "@tiptap/extension-placeholder";
 
 import { useSubmitPostMutation } from "@/components/posts/editor/mutations";
+import { LoadingButton } from "@/components/LoadingButton";
 import { useSession } from "@/app/(main)/SessionProvider";
 import { UserAvatar } from "@/components/UserAvatar";
-import "./styles.css";
 
-import LoadingButton from "@/components/LoadingButton";
+import "./styles.css";
 
 export function PostEditor() {
   const { user } = useSession();

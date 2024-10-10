@@ -1,14 +1,15 @@
-import { useDeletePostMutation } from "@/components/posts/mutations";
 import { PostData } from "@/lib/types";
-import LoadingButton from "@/components/LoadingButton";
+import { useDeletePostMutation } from "@/components/posts/mutations";
+import { LoadingButton } from "@/components/LoadingButton";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogFooter,
+  DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 
 interface DeletePostDialogProps {
   post: PostData;
@@ -32,7 +33,9 @@ export function DeletePostDialog({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
-        <DialogHeader>Delete post?</DialogHeader>
+        <DialogHeader>
+          <DialogTitle>Delete post?</DialogTitle>
+        </DialogHeader>
         <DialogDescription>
           Are you sure you want to delete this post? This action cannot be
           undone.

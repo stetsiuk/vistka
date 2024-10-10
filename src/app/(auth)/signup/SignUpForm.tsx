@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { signUpSchema, SignUpValues } from "@/lib/validation";
+import { signUp } from "@/app/(auth)/signup/actions";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/PasswordInput";
+import { LoadingButton } from "@/components/LoadingButton";
 import {
   Form,
   FormControl,
@@ -13,9 +16,6 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { signUp } from "@/app/(auth)/signup/actions";
-import { PasswordInput } from "@/components/PasswordInput";
-import LoadingButton from "@/components/LoadingButton";
 
 export default function SignUpForm() {
   const [error, setError] = useState<string>();
