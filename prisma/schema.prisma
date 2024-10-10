@@ -10,20 +10,18 @@ datasource db {
 }
 
 model User {
-  id           String  @id
+  id           String    @id
   displayName  String
-  username     String  @unique
-  email        String? @unique
-  googleId     String? @unique
+  username     String    @unique
+  email        String?   @unique
+  googleId     String?   @unique
   passwordHash String?
   avatarUrl    String?
   bio          String?
-
-  sessions Session[]
-  posts    Post[]
-
-  following Follow[] @relation("Following")
-  followers Follow[] @relation("Followers")
+  sessions     Session[]
+  posts        Post[]
+  following    Follow[]  @relation("Following")
+  followers    Follow[]  @relation("Followers")
 
   createdAt DateTime @default(now())
 
@@ -31,8 +29,7 @@ model User {
 }
 
 model Session {
-  id String @id
-
+  id     String @id
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -52,13 +49,30 @@ model Follow {
 }
 
 model Post {
-  id      String @id @default(cuid())
-  content String
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String  @id @default(cuid())
+  content     String
+  attachments Media[]
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 
   @@map("posts")
+}
+
+model Media {
+  id     String    @id @default(cuid())
+  type   MediaType
+  url    String
+  postId String?
+  post   Post?     @relation(fields: [postId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+
+  @@map("post_media")
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
 }
