@@ -23,8 +23,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | vistka",
-    default: "vistka",
+    template: "%s | Vistka",
+    default: "Vistka",
   },
   description: "The social app",
 };
