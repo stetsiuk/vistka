@@ -63,7 +63,7 @@ export function ChatSidebar({ open, onClose }: Props) {
           searchForChannels: true,
           searchQueryParams: {
             channelFilters: {
-              filters: { type: "messaging", members: { $in: [user.id] } },
+              filters: { members: { $in: [user.id] } },
             },
           },
         }}

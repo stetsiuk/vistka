@@ -86,8 +86,8 @@ export function NewChatDialog({ onOpenChange, onChatCreated }: Props) {
 
   return (
     <Dialog open onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
+      <DialogContent className="bg-card p-0">
+        <DialogHeader className="px-6 pt-6">
           <DialogTitle>New Chat</DialogTitle>
           <DialogDescription className="hidden" />
         </DialogHeader>

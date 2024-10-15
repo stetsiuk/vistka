@@ -13,6 +13,7 @@ export function useInitializeChatClient() {
 
   useEffect(() => {
     const client = StreamChat.getInstance(process.env.NEXT_PUBLIC_STREAM_KEY!);
+
     client
       .connectUser(
         {
