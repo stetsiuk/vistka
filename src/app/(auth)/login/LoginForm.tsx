@@ -50,7 +50,11 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="Username" {...field} />
+                <Input
+                  placeholder="Username"
+                  autoComplete="username"
+                  {...field}
+                />
               </FormControl>
             </FormItem>
           )}

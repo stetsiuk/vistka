@@ -29,9 +29,10 @@ export default function Page() {
           </div>
         </div>
         <Image
+          className="hidden w-1/2 object-cover md:block"
           src={signUpImage}
           alt="sign-up-image"
-          className="hidden w-1/2 object-cover md:block"
+          priority
         />
       </div>
     </main>
