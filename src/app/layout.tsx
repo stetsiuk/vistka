@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import { extractRouterConfig } from "uploadthing/server";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { GoogleTagManager } from "@next/third-parties/google";
 
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { Toaster } from "@/components/ui/toaster";
@@ -43,6 +43,7 @@ export default function RootLayout({
       >
         <GoogleTagManager gtmId="GTM-WPZSZTHZ" />
         <GoogleTagManager gtmId="GTM-5LKCPF22" />
+        <GoogleAnalytics gaId="G-3JP1C3E4CP" />
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <ReactQueryProvider>
           <ThemeProvider
