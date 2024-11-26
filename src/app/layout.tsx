@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import { extractRouterConfig } from "uploadthing/server";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { Toaster } from "@/components/ui/toaster";
@@ -40,6 +41,8 @@ export default function RootLayout({
         className={`${geistSans.className} ${geistMono.className}`}
         suppressHydrationWarning={true}
       >
+        <GoogleTagManager gtmId="GTM-WPZSZTHZ" />
+        <GoogleTagManager gtmId="GTM-5LKCPF22" />
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <ReactQueryProvider>
           <ThemeProvider
